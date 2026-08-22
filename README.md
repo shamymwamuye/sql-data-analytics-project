@@ -9,12 +9,12 @@ The warehouse is a simple star schema: one fact table surrounded by two dimensio
 ```
 gold.dim_customers          gold.fact_sales              gold.dim_products
 -----------------           -----------------             -----------------
-customer_key (PK)  ───────< customer_key (FK)             product_key (PK)
-customer_id                 product_key (FK)   >───────── product_id
+customer_key (PK)  ───────< customer_key (FK)             product_id
+customer_id                 product_key (FK)  >────────   product_key (PK)    
 customer_number             order_number                  product_number
 first_name / last_name      order_date                    product_name
 country                     shipping_date / due_date      category_id
-marital_status              sales_amount                 category
+marital_status              sales_amount                  category 
 gender                      quantity                      subcategory
 birth_date                  price                         maintenance
 create_date                                               cost
@@ -47,20 +47,21 @@ create_date                                               cost
 
 ```
 sql-data-warehouse-analytics/
-├── README.md
 ├── datasets/
 │   ├── dim_customers.csv
 │   ├── dim_products.csv
 │   └── fact_sales.csv
-├── scripts/
-│   ├── 00_init_database.sql                    -- creates DB, schema, tables; loads CSVs
+├── results/
+│   ├── customer_report_results.csv              -- sample output of gold.customers_report
+│   ├── product_report_results.csv               -- sample output of gold.product_report
+│   └── sales_report_results.csv                 -- sample output of gold.product_report
+├──scripts/
+│   ├── 00_init_database.sql                     -- creates DB, schema, tables; loads CSVs
 │   ├── 01_customer_segmentation_analysis.sql    -- creates gold.customers_report
 │   ├── 02_product_performance_analysis.sql      -- creates gold.product_report
 │   └── 03_sales_performance_analysis.sql        -- creates gold.sales_report
-└── results/
-    ├── customer_report_results.csv              -- sample output of gold.customers_report
-    ├── product_report_results.csv                -- sample output of gold.product_report
-    └── sales_report_results.csv                   -- sample output of gold.sales_report
+├── LICENSE
+└── README.md          
 ```
 
 ## How to run
